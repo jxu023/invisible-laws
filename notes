@@ -31,3 +31,9 @@ look up papers on:
 tools:
     clang static analyzer
     llvm pass
+
+approximate regex generator might not be the exact thing i was looking for. The usage of it i had in mind is more like a trend analyzer. Given a perhaps large set of "related" execution paths, derive a very "general" regular expression that matches on most of the paths.
+
+what if this "fuzzy regex fitting" could also be "fuzzy grammar fitting"? would it help the inference tool? make it more powerful? allow it more suggestions?
+
+
