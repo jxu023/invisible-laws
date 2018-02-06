@@ -21,3 +21,13 @@ We coudl at least investigate the possibility of using an approximate regex gene
 also find some papers on LSA source code analysis, see how other people have used
 
 finally, the given goal was to be able to automatically or systematically generate a code checker for code that calls some API. try to find other papers related to this and think about related ideas.
+
+look up papers on:
+    assertion generation
+    lsa for source code analysis
+    approximate regex generation
+    checking code which calls an api
+
+tools:
+    clang static analyzer
+    llvm pass
