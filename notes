@@ -1,0 +1,23 @@
+dont' quite have a good name/title for the proj yet, should ask teammembers to think about it too
+
+had an idea for a regex generator in the style of the excel flashfill synthesis paper
+
+we have have it be a "general" regex generator. Given a set of execution paths of code
+
+look through the code sequences of those paths, generate a "general" regex that would
+MATCH on a majority of them or perhaps all of them.
+
+could call it a "fuzzy" or approximate regex generator
+    ***** https://laurikari.net/tre/about/ *****
+we coudl then use this regex as a candidate rule
+it would be a limited form of regex though to be practical i think
+again, look at the excel flashfill paper and perhaps some of the other synthesis paper
+for reference and examples
+
+The other idea was to use LSA to analyze the source code to generate candidate <b> then <a> rules. I think LSA is able to rank related keywords in portions of code, lets say a document is a function or something like that. We can use the rankings from the LSA thing as input into the approximate regex generator
+
+We coudl at least investigate the possibility of using an approximate regex generator. try to find some papers on this
+
+also find some papers on LSA source code analysis, see how other people have used
+
+finally, the given goal was to be able to automatically or systematically generate a code checker for code that calls some API. try to find other papers related to this and think about related ideas.
