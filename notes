@@ -26,7 +26,10 @@ look up papers on:
     assertion generation
     lsa for source code analysis
     approximate regex generation
-    checking code which calls an api
+    checking code which calls an api / or implements an api
+        example: orig paper checks
+            different implementations of common filesystem interface
+            device drivers implementation of interrupts
 
 tools:
     clang static analyzer
@@ -37,3 +40,50 @@ approximate regex generator might not be the exact thing i was looking for. The 
 what if this "fuzzy regex fitting" could also be "fuzzy grammar fitting"? would it help the inference tool? make it more powerful? allow it more suggestions?
 
 most languages are already cfg expressible, i guess cfg could be considered as having an element of time too. This case is somewhat different from the classic language cfg in that now we're considering execution path cfg. The rules shoudl apply to both of them, but execution path cfg can be more limited, it can be "straight line code" for simpler checkers can be used
+
+we can divide the project into several parts
+    internal consistency
+        infer must beliefs
+            direct observation
+            pre and post condition
+        (any optimizations over the paper?)
+    code relator (common _____)
+        execution path
+        interface
+        semantic boundary
+        infer code belief across versions
+        group code into equivalence classes, maybe LSA could be used here
+    statistical analysis
+        (on top of internal consistency, is there a better way to do this than the paper? lots of things in stats.. pgm, mcmc, need some weighted controls to favour things like local errors and such as they did in paper)
+        the paper also mentions augmenting this with "code trustworthiness"
+            need to segment code and evaluate "trustworthiness"
+            example: old code (more trustworthy) than new code in a proj
+                maybe? maybe not?
+        inversion ranking
+        non-spurious principle
+            properties must be true for at least one element
+            immediately promote may to must
+        handling noise
+            "there are so many paths", derive patterns, use promising ones
+                aka more data
+            rank error messages (from assuming MUST)
+                don't rank beliefs (what did paper mean by this exactly?)
+        latent specifications
+            humans have specific naming conventions, datatypes, special function calls
+                this is the place where LSA could be used
+    candidate rule generators
+        (using LSA, fuzzy regex/grammar fitting on str8 line code).
+
+what other things can we encode about program state/belief from static analysis?
+
+what if we could directly feed something like a boolean expression to a solver for creating our belief set?
+
+beliefs can propagate both forward and backward, this can mean that our implementation of internal consistency is going to be a bit tricky. Well, maybe not relaly. inference of beliefs will use direct obs, pre cond, post cond. only pre cond is backwards, just collect the beliefs without flagging error is all. or maybe collect all inferred beliefs in multiple passes, flag errors in one final pass
+
+everything declared is used at least once ..
+
+threshold for redundancy and contradiction errors: checks separated arbitrary by ~10 executable lines at most (orig paper)
+
+make sure to check out other papers from the orig paper's authors
+make sure everyone understands everything in the orig paper
+look up papers that cite orig paper and which are cited by orig paper
