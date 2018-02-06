@@ -36,4 +36,4 @@ approximate regex generator might not be the exact thing i was looking for. The 
 
 what if this "fuzzy regex fitting" could also be "fuzzy grammar fitting"? would it help the inference tool? make it more powerful? allow it more suggestions?
 
-
+most languages are already cfg expressible, i guess cfg could be considered as having an element of time too. This case is somewhat different from the classic language cfg in that now we're considering execution path cfg. The rules shoudl apply to both of them, but execution path cfg can be more limited, it can be "straight line code" for simpler checkers can be used
