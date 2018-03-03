@@ -1,0 +1,9 @@
+
+compile scan-build, scan-view
+	cd buildllvm
+	make -j4
+	sudo make install
+test scan-build
+	cd invisible-laws
+	scan-build make
+
