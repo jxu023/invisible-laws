@@ -12,3 +12,6 @@ test scan-build
 	cd invisible-laws
 	~/buildllvm/bin/scan-build make
 
+https://clang-analyzer.llvm.org/checker_dev_manual.html
+http://clang.llvm.org/get_started.html
+http://clang.llvm.org/doxygen/Checker_8h.html

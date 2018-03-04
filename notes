@@ -87,3 +87,88 @@ threshold for redundancy and contradiction errors: checks separated arbitrary by
 make sure to check out other papers from the orig paper's authors
 make sure everyone understands everything in the orig paper
 look up papers that cite orig paper and which are cited by orig paper
+
+order can be irrelevant as in the autoises paper
+access order consideration can be more expensive too
+
+// LECTURE ********************************************************
+
+every group is going to get feedback, that's a good thing, and for every assignment too? email..
+
+bugs as deviant behaviour - dawnson engler
+detect bugs in large scale systems
+the problem is: if you want to detect a bug, how do you know what a bug is? (philosophical o_o)
+
+type system
+    very "basic" error detector
+    C has only a few types
+        char, int, short, pointer, float, array, struct
+        a very limited, primitive type system
+    some language extend on that, gives ability to catch more errors
+        tainted pointers, untainted pointers - enabled by type system
+    CCured - used type system to catch spatial memory errors
+        specified pointers of diff types, became fat pointers
+        basically modified the language itself
+formal methods
+    write a specification
+        properties that want to check
+            safety
+                this property should never be violated
+                "don't do anything bad"
+            liveness
+                this should eventually happen, eventually be used
+                "do something good" - "have an effect/action/result"
+                security research doesn't really care much about liveness
+                useful for other areas
+        preconditions, postconditions
+            aka requirements, consequences
+        needs to be manually written
+            # of bugs captured highly depends on well written specification
+    it's liked because of the fundamental guarantee of "bug-free"ness
+    there's a few bad things though
+        mainly that need to give specification
+        scalability, large model takes long time to give any results
+    there are some improvements in mechanical proof systems
+        Coq
+            help to check if the logic is right or not
+    interesting area
+high level compilations
+    hardwired application level information
+        certain rules embedded - "if you see this then there is error"
+
+problem for all of the above approaches
+    you need to know what the rules are
+    what is right? what is wrong? what is a bug? what is intended?
+    a lot of times you don't have this
+    but the rules are often embedded in the code
+    just need to finda  way to extract them
+    this is what the paper proposes and "very useful"
+
+how to construct rules; basically there is two types/ways
+    internal consistency
+        try to infer the state or belief based on the code operations
+        e.g. null pointer dereference bug
+        assignemnt
+            becomes null or not null
+            precondition is diff from post condition
+        comparison
+            adds to belief set within the if scope and else scope
+        when we have a pointer, it must have one kind of state or belief
+            it cannot have two, can only be in one state
+        (numBugs numFalsePos)
+        check then use(79 26), use then check (102 4)
+            check implies belief, use changes state
+                each have their own pre and post conditions
+        redundant check (24 10)
+    templates
+        <a> paired with <b>
+        function <f> must be checked for error
+        no <a> after <b>
+        <b> must follow <a>
+        in context <c>, do <b> after <a>
+    statistical analysis
+        build candidates from templates
+    
+
+static analysis usually doesn't consider paths, so this can come up with false pos o__o
+
