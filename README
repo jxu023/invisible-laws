@@ -1,9 +1,14 @@
 
+modify code in
+	~/llvm/tools/clang/lib/StaticAnalyzer
+
 compile scan-build, scan-view
 	cd buildllvm
 	make -j4
-	sudo make install
+	make install # do this if you want to avoid typing
+		~/buildllv/bin/
+
 test scan-build
 	cd invisible-laws
-	scan-build make
+	~/buildllvm/bin/scan-build make
 
