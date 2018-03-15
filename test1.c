@@ -23,7 +23,6 @@ int main() {
   if (0) {
     func();
   }
-  a();
   b();
   c();
 	/*int * p;

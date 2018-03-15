@@ -1,3 +1,75 @@
+
+  caveats:
+    it's very easy to get false positives
+      there are a lot of unusual legal use cases
+    name of file handle that tried to close twice
+      try to track the argument between functions
+    relinquishing ownership ***************************************************
+      function a opens the file, exits
+      function b closes the file
+
+  what is a constraint solver?
+    try to emulate the presentation style in "write a checker in 24 hours"
+    recommend this at the end
+    https://www.youtube.com/watch?v=kdxlsP5QVPw
+      only has 155 views on youtube, very good tutorial
+
+  what is a CSA Checker?
+    Updates info in exploded graph
+    contains no state, run in an undetermined order - state is all maintained in ProgramState of ExplodedGraph node
+
+  conclusion:
+    there is a lot of information available with path sensitive analysis
+      what does "path sensitive" analysis really mean with respect to making a checker?
+        it basically means that for any particular situation, you can check if some path exists where it's possible
+    all that available information, the hard part is trying to find something useful to do with all that information
+    it could be a very good place to apply machine learning techniques
+
+    this project represents our first explorations with program analysis as well
+      different ways to view code
+        Abstract Syntax Tree, Control Flow Graph, ExplodedGraph(ProgramPoint, ProgramState)
+
+
+
+how are we going to use the results from LSA analysis?
+what kind of results are you expecting from LSA?
+
+i guess what i expect is a list of pairs of function calls
+ranked in order of top "relevance" to each other
+
+could we also calculate highest relevance function triples?
+and quadruples? Using LSA we should be able to right?
+it's probably some really simple matrix operation
+
+use these as candidate may must rules
+  functions that have to go together
+    how are we sure that they really related?
+
+  you could verify that they go together by "connecting" some argument between them
+  or by connecting one's output to one's input/argument
+
+  but you could have the situation where both functions are highly related like this
+        A.out     B.out
+            \   /
+         D.in(arg1, arg2)
+
+  collect statistics on say ... top 10 candidate rules
+  use rarity > 90% threshold to emit error reports
+
+  simple pair rule: A after B in same scope
+
+  how to relate them?
+  use taint analysis
+
+  taint all values written to by A, written to by B
+  this also doesn't depend on order
+
+  taint, precall postcall, examine differing memory regions in programstate? and then tate those
+  with a particular color
+
+
+
+
 Checker::ASTVisitor
 
   go over each function call
