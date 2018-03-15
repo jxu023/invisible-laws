@@ -1,3 +1,35 @@
+Checker::ASTVisitor
+
+  go over each function call
+
+doc_i
+{
+  fprintf(stderr, callee name) > word
+  end doc
+}
+
+
+
+
+
+
+
+
+
+
+
+clang found ~50 bugs in puzzles
+  should try going through puzzles manually to see if they really are bugs
+
+  now there are 100 bugs, some of them are definitely false positives
+  
+create our own checker
+
+use LSA somehow
+  create a pass to go through
+
+add a file
+    add file to CMakeLists
 
 modify code in
 	~/llvm/tools/clang/lib/StaticAnalyzer
@@ -5,7 +37,7 @@ modify code in
 compile scan-build, scan-view
 	cd buildllvm
 	make -j4
-	make install # do this if you want to avoid typing
+	sudo make install # do this if you want to avoid typing
 		~/buildllv/bin/
 
 test scan-build
@@ -15,3 +47,16 @@ test scan-build
 https://clang-analyzer.llvm.org/checker_dev_manual.html
 http://clang.llvm.org/get_started.html
 http://clang.llvm.org/doxygen/Checker_8h.html
+
+clang --analyze --analyzer-checker=alpha.core.MainCallChecker test1.c
+
+make clang - for subsequent clang dev
+
+scan-build -enable-checker alpha.core.MainCall make
+
+our contribution?
+  LSA, common argument
+
+  on jumping into a function, the core will analyze it, or it might be out of scope, or 
+
+https://www.sqlite.org/whentouse.html
